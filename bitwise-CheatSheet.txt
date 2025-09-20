@@ -1,0 +1,108 @@
+Bitwise Operations Cheat Sheet & Exercises
+==========================================
+
+📝 Memo Sheet (Kid-Friendly Cheat Sheet)
+---------------------------------------
+
+🎛 Operators on Bits
+- AND (&): both must be ON → keeps only 1s that are in both.
+  Example: 1100 & 1010 = 1000
+- OR (|): at least one ON → combines 1s.
+  Example: 1100 | 1010 = 1110
+- XOR (^): different wins → ON only if they’re different.
+  Example: 1100 ^ 1010 = 0110
+- NOT (~): flip all bits.
+  Example (8 bits): ~0000 1111 = 1111 0000
+
+⬅️➡️ Shifts
+- x << n: move left → multiply by 2ⁿ.
+  Example: 0001 1010 (26) << 2 = 0110 1000 (104)
+- x >> n: move right → divide by 2ⁿ.
+  - Logical (fill with 0s): 0001 1010 >> 2 = 0000 0110 (6)
+  - Arithmetic (copy sign): 1110 0000 (-32) >> 2 = 1111 1000 (-8)
+
+🎭 Masks (Spotlight Glasses)
+- Test bit k: (x & (1 << k)) != 0
+- Set bit k: x |= (1 << k)
+- Clear bit k: x &= ~(1 << k)
+- Toggle bit k: x ^= (1 << k)
+- Extract field [s..e]: ((x >> s) & ((1 << (e-s+1)) - 1))
+
+🌟 Quick Examples
+A = 0x6D (0110 1101)
+B = 0x53 (0101 0011)
+
+A & B = 0100 0001 = 0x41 (65)
+A | B = 0111 1111 = 0x7F (127)
+A ^ B = 0011 1110 = 0x3E (62)
+~A    = 1001 0010 = 0x92 (146)
+
+
+🎲 Exercises (with corrections & explanations)
+---------------------------------------------
+
+Exercise 1
+0xF0 & 0x3C = ?
+1111 0000 & 0011 1100 = 0011 0000 = 0x30 (48)
+✔ AND keeps common 1s only.
+
+Exercise 2
+0b0101_1010 ^ 0b0011_0011 = ?
+= 0110 1001 = 0x69 (105)
+✔ XOR = different bits light up.
+
+Exercise 3
+x = 0b0001_1010
+x << 2 = 0110 1000 = 0x68 (104)
+x >> 3 = 0000 0011 = 0x03 (3)
+✔ Left = ×4, Right = ÷8.
+
+Exercise 4
+flags = 0b0000_0000
+Turn ON bits 0 and 3:
+flags |= (1 << 0) | (1 << 3) = 0000 1001
+✔ Now bit0 and bit3 are ON.
+
+Exercise 5
+x = 0b1101_0110
+Extract [4..7]:
+Mask = 1111 0000
+(x & Mask) >> 4 = 1101 = 0xD (13)
+✔ Field = 13.
+
+Exercise 6
+~0b11110000 (8-bit) = 0000 1111 = 0x0F (15)
+✔ Flip all bits.
+
+Exercise 7
+0b1010 | 0b0101 = ?
+= 1111 = 0xF (15)
+✔ OR combines 1s.
+
+Exercise 8
+x = 0b0010_0100, test bit2:
+Mask = 0000 0100
+x & Mask = 0000 0100 ≠ 0 → true
+✔ Bit2 is ON.
+
+Exercise 9
+x = 0b0000_0110
+Toggle bit1:
+Mask = 0000 0010
+x ^ Mask = 0000 0100
+✔ Bit1 flipped OFF.
+
+Exercise 10
+x = 0b1010_1101
+Extract 3 bits [2..4]:
+Shift right 2 → 0010 1011
+Mask with 0000 0111 → 0000 0011 = 3
+✔ Field = 3.
+
+
+✅ Checklist
+-------------
+- I know how to apply AND/OR/XOR/NOT on bytes.
+- I understand the difference between >> logical vs. arithmetic.
+- I know how to test/set/clear/toggle a bit with a mask.
+- I can extract a multi-bit field and realign it.
